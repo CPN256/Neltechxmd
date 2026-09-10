@@ -1,85 +1,114 @@
-# WhatsApp Pairing-Code Bot (Baileys)
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-A minimal WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Baileys) that:
+    <title>CAT CPN — Bots, Web Tools & Apps Built in Uganda</title>
 
-- Logs in using an **8-digit pairing code** (no QR scanning) — you enter your phone
-  number in the console and type the code into WhatsApp > Linked Devices.
-- Persists your session to `./auth_info/` (`creds.json` + signal key files), so it
-  reconnects automatically on restart without pairing again.
-- Auto-reconnects on any dropped connection, unless WhatsApp reports an actual
-  logout (in which case it wipes the local session so you can re-pair cleanly).
-- Sends a branded welcome image + caption to your own WhatsApp chat once online.
-- Responds to three commands, all using the `.` prefix:
-  - `.menu` — lists available commands
-  - `.ping` — replies with round-trip latency and bot uptime
-  - `.hello` — quick greeting
-- Auto-views WhatsApp Status updates posted by your contacts.
-- Shows a brief "typing..." presence before replying, so it doesn't feel like
-  an instant script firing back.
-- Logs every connection step (connecting, open, close reason, creds saved, etc.)
-  to the console so it's easy to follow what's happening in the Pterodactyl console.
+    <meta
+      name="description"
+      content="CAT CPN builds bots, web tools, cloud services and mobile apps that simplify digital life. Explore our projects, read the blog and connect with the team."
+    />
 
-## Files
+    <meta name="author" content="CAT CPN" />
 
-- `index.js` — the bot
-- `package.json` — dependencies (published `baileys` npm package, pinned to
-  match the version you're using)
-- `assets/banner.png` — the welcome-image banner sent on successful connect;
-  swap this file for your own artwork any time, same filename
-- `auth_info/` — created automatically on first run, holds your session (never commit this)
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://catcpn.cc.cd/" />
 
-## Running locally
+    <meta name="theme-color" content="#0c0d12" />
 
-```bash
-npm install
-npm start
-```
+    <meta
+      name="apple-mobile-web-app-capable"
+      content="yes"
+    />
 
-The first time you run it, the console will prompt:
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
 
-```
-Enter your WhatsApp number with country code, digits only (e.g. 15551234567):
-```
+    <meta
+      name="apple-mobile-web-app-title"
+      content="CAT CPN"
+    />
 
-Enter it, wait for the 8-character pairing code to print, then in WhatsApp go to
-**Settings > Linked Devices > Link a Device > Link with phone number instead**,
-and type the code in. The bot will log `Connection opened successfully` and
-DM you a confirmation.
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
 
-## Deploying on Pterodactyl
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
 
-1. Create a server using the **Node.js** egg (Node 20+).
-2. Upload/extract this project into the server's file manager (or push it via SFTP),
-   *excluding* `node_modules` and `auth_info` — those get created on the server.
-   Make sure `assets/banner.png` comes along, or the welcome message falls
-   back to text-only.
-3. Set the **Startup Command** to:
-   ```
-   node index.js
-   ```
-4. Start the server once to let it run `npm install` (Pterodactyl's Node egg
-   normally runs this automatically before start; if not, open the server
-   console and run `npm install` manually from the file manager's console).
-5. Start the server and open the **Console** tab — this is your interactive
-   terminal, so when it asks for your phone number, type it directly into the
-   Pterodactyl console input and press enter.
-6. Copy the pairing code that prints and enter it into WhatsApp as described above.
-7. Once connected, `auth_info/` will persist across restarts as long as the
-   server's volume isn't wiped — so future restarts reconnect silently with
-   no re-pairing needed.
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="CAT CPN — Bots, Web Tools & Apps"
+    />
 
-### Notes for Pterodactyl specifically
+    <meta
+      property="og:description"
+      content="Building powerful digital tools, bots, web apps and services for everyone."
+    />
 
-- Make sure the egg/container keeps **stdin open** — the Pterodactyl console
-  supports typing directly into a running process, so the phone-number prompt
-  will work exactly like a normal terminal.
-- If you ever get logged out from your phone (Linked Devices > removed), the
-  bot detects this, deletes `auth_info/`, and exits — just start it again to
-  pair fresh.
-- Back up `auth_info/` if you want to preserve the session across server
-  re-installs/migrations.
+    <meta
+      property="og:type"
+      content="website"
+    />
 
-## Extending
+    <meta
+      property="og:url"
+      content="https://catcpn.cc.cd/"
+    />
 
-Commands live in `handleMessages()` in `index.js` — add more `else if (command === '...')`
-branches following the pattern used by `.menu` and `.ping`.
+    <!-- Twitter -->
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content="CAT CPN — Bots, Web Tools & Apps"
+    />
+
+    <meta
+      name="twitter:description"
+      content="Building powerful digital tools, bots, web apps and services for everyone."
+    />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CAT CPN",
+        "url": "https://catcpn.cc.cd/",
+        "description": "CAT CPN builds bots, web tools, cloud services and mobile apps.",
+        "founder": {
+          "@type": "Person",
+          "name": "Oundo Nelson",
+          "jobTitle": "Founder & Lead Developer"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "UG",
+          "addressRegion": "Uganda"
+        }
+      }
+    </script>
+    <script src="https://pl31271100.profitableratecpmnetwork.com/87/99/24/87992466722c1fdb7ca4b08f62dba860.js"></script>
+ </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script>
+      type="module"
+      src="/src/main.tsx"
+    </script>
+    <script src="https://pl31271099.profitableratecpmnetwork.com/d4/a3/d8/d4a3d8ba88ecf2cfd0f8cebe53530f67.js"></script>
+
+  </body>
+</html>
