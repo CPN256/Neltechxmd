@@ -11,6 +11,23 @@ DON'T FORGET TO FORK 🍴 & STAR 🌟 OUR REPO🫠
 </a>
 
 
+<p align="center">
+  <a href="https://chat.whatsapp.com/E8STWOsLagiLgzAkhhliyQ">
+    <img alt=Support weight="10" src="https://i.ibb.co/2YMygjV5/img-5iovezeh.jpg"> 
+    </p>
+<p align="center"> 
+    </p>
+<p align="center">
+  <a aria-label="Join our chats" href="https://chat.whatsapp.com/E8STWOsLagiLgzAkhhliyQ" target="_blank">
+    <img alt="whatsapp" src="https://img.shields.io/badge/Join Group chat-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+    <a align="center">
+  <a aria-label="Follow Channel" href="https://whatsapp.com/channel/0029VaXaqHII1rcmdDBBsd3g" target="_blank">
+    <img alt="whatsapp" src="https://img.shields.io/badge/Follow Channel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+</a>
+<a aria-label="Chat me" href="https://t.me/eliteprotechs" target="_blank">
+    <img alt="telegram" src="https://img.shields.io/badge/Telegram Group-24A1DE?style=for-the-badge&logo=telegram&logoColor=white" />
+  </a>
+</p>  
 A minimal WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Baileys) that:
 
 - Logs in using an **8-digit pairing code** (no QR scanning) — you enter your phone
