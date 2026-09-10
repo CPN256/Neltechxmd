@@ -299,10 +299,25 @@ async function handleMessages(upsert) {
 
 		// Every inbound message lands here regardless of content — this is
 		// where you'd hook in logging, storage, or auto-replies beyond
-		// commands. We only log it for now so normal chats aren't spammed.
+		// commands.
 		log(`Message received from ${from}: "${text || '[non-text message]'}"`)
 
-		if (!text.startsWith(PREFIX)) continue
+		const isGroup = from.endsWith('@g.us')
+
+		if (!text.startsWith(PREFIX)) {
+			// Plain message, not a command. Reply directly in 1:1 chats so
+			// the bot actually sends & receives real conversation — skip
+			// groups so it doesn't spam every message sent in one.
+			if (!isGroup && text) {
+				try {
+					await typingBurst(from)
+					await handlePlainMessage(from, text)
+				} catch (err) {
+					log(`Error auto-replying to ${from}: ${err.message}`)
+				}
+			}
+			continue
+		}
 
 		const [rawCommand, ...args] = text.slice(PREFIX.length).trim().split(/\s+/)
 		const command = rawCommand.toLowerCase()
@@ -329,6 +344,17 @@ async function handleMessages(upsert) {
 			log(`Error handling command "${command}": ${err.message}`)
 		}
 	}
+}
+
+// Replies to a plain message that wasn't a command — a simple
+// acknowledgment so the bot demonstrably sends & receives real messages,
+// with a nudge toward the command list.
+async function handlePlainMessage(jid, text) {
+	await sock.sendMessage(jid, {
+		text:
+			`👋 Got your message: "_${text}_"\n\n` +
+			`I mainly respond to commands — type *${PREFIX}menu* to see what I can do.`
+	})
 }
 
 // Shows a short "composing..." presence to the chat before a reply lands.
