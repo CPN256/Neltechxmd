@@ -109,7 +109,7 @@ DM you a confirmation.
   </a>  
 
   <!-- Other Repo -->
-  <a href="https://github.com/CPN256/my-digital-hub" target="_blank" aria-label="Other Repo">  
+  <a href="https://github.com/CPN256/my-digital-twin" target="_blank" aria-label="Other Repo">  
     <img alt="Other Repo" src="https://img.shields.io/badge/OTHER REPO-0E1241?style=for-the-badge&logo=github&logoColor=white" />  
   </a>  
 
