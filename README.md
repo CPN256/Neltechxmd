@@ -8,18 +8,24 @@ A minimal WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Bail
   reconnects automatically on restart without pairing again.
 - Auto-reconnects on any dropped connection, unless WhatsApp reports an actual
   logout (in which case it wipes the local session so you can re-pair cleanly).
-- Sends a "✅ Connected successfully" message to your own WhatsApp chat once online.
-- Responds to two commands, both using the `.` prefix:
+- Sends a branded welcome image + caption to your own WhatsApp chat once online.
+- Responds to three commands, all using the `.` prefix:
   - `.menu` — lists available commands
   - `.ping` — replies with round-trip latency and bot uptime
+  - `.hello` — quick greeting
+- Auto-views WhatsApp Status updates posted by your contacts.
+- Shows a brief "typing..." presence before replying, so it doesn't feel like
+  an instant script firing back.
 - Logs every connection step (connecting, open, close reason, creds saved, etc.)
   to the console so it's easy to follow what's happening in the Pterodactyl console.
 
 ## Files
 
 - `index.js` — the bot
-- `package.json` — dependencies (Baileys pulled straight from GitHub, since the
-  npm registry copy can lag behind)
+- `package.json` — dependencies (published `baileys` npm package, pinned to
+  match the version you're using)
+- `assets/banner.png` — the welcome-image banner sent on successful connect;
+  swap this file for your own artwork any time, same filename
 - `auth_info/` — created automatically on first run, holds your session (never commit this)
 
 ## Running locally
@@ -45,6 +51,8 @@ DM you a confirmation.
 1. Create a server using the **Node.js** egg (Node 20+).
 2. Upload/extract this project into the server's file manager (or push it via SFTP),
    *excluding* `node_modules` and `auth_info` — those get created on the server.
+   Make sure `assets/banner.png` comes along, or the welcome message falls
+   back to text-only.
 3. Set the **Startup Command** to:
    ```
    node index.js
