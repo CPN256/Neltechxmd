@@ -8,7 +8,11 @@ A minimal WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Bail
   reconnects automatically on restart without pairing again.
 - Auto-reconnects on any dropped connection, unless WhatsApp reports an actual
   logout (in which case it wipes the local session so you can re-pair cleanly).
-- Sends a branded welcome image + caption to your own WhatsApp chat once online.
+- Sets the banner image as the bot's actual WhatsApp profile picture (once,
+  on first successful connect), and sends it as the welcome image too.
+- Sends and receives real WhatsApp messages — every inbound message is
+  logged, and any command handler can call `sock.sendMessage()` to reply
+  to any chat.
 - Responds to three commands, all using the `.` prefix:
   - `.menu` — lists available commands
   - `.ping` — replies with round-trip latency and bot uptime
