@@ -32,7 +32,7 @@ DON'T FORGET TO FORK 🍴 & STAR 🌟 OUR REPO🫠
       
 A minimal WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Baileys) that:
 
-- Logs in using an **8-digit pairing code** (no QR scanning) — you enter your phone
+-Cat Cpn logs in using an **8-digit pairing code** (no QR scanning) — you enter your phone
   number in the console and type the code into WhatsApp > Linked Devices.
 - Persists your session to `./auth_info/` (`creds.json` + signal key files), so it
   reconnects automatically on restart without pairing again.
@@ -72,7 +72,7 @@ npm start
 The first time you run it, the console will prompt:
 
 ```
-Enter your WhatsApp number with country code, digits only (e.g. 15551234567):
+Enter your WhatsApp number with country code, digits only (e.g. 256750713834):
 ```
 
 Enter it, wait for the 8-character pairing code to print, then in WhatsApp go to
@@ -101,19 +101,26 @@ DM you a confirmation.
 7. Once connected, `auth_info/` will persist across restarts as long as the
    server's volume isn't wiped — so future restarts reconnect silently with
    no re-pairing needed.
+ 
+   <p align="left">  
+  <!-- Website -->
+  <a href="https://catcpn.cc.cd/" target="_blank" aria-label="CATCPN Website">  
+    <img alt="CATCPN Website" src="https://img.shields.io/badge/CATCPN WEB-25D366?style=for-the-badge&logo=internetexplorer&logoColor=white" />  
+  </a>  
 
-### Notes for Pterodactyl specifically
+  <!-- Other Repo -->
+  <a href="https://github.com/CPN256/my-digital-hub" target="_blank" aria-label="Other Repo">  
+    <img alt="Other Repo" src="https://img.shields.io/badge/OTHER REPO-0E1241?style=for-the-badge&logo=github&logoColor=white" />  
+  </a>  
 
-- Make sure the egg/container keeps **stdin open** — the Pterodactyl console
-  supports typing directly into a running process, so the phone-number prompt
-  will work exactly like a normal terminal.
-- If you ever get logged out from your phone (Linked Devices > removed), the
-  bot detects this, deletes `auth_info/`, and exits — just start it again to
-  pair fresh.
-- Back up `auth_info/` if you want to preserve the session across server
-  re-installs/migrations.
+  <!-- YouTube -->
+  <a href="https://www.youtube.com/@CatPhoenix" target="_blank" aria-label="Subscribe on YouTube">  
+    <img alt="YouTube Channel" src="https://img.shields.io/badge/Subscribe-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />  
+  </a>  
+</p>
 
-## Extending
+ --- 
+- Star ⭐ repo if you like this bot.
 
-Commands live in `handleMessages()` in `index.js` — add more `else if (command === '...')`
-branches following the pattern used by `.menu` and `.ping`.
+
+
