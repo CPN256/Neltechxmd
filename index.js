@@ -153,7 +153,9 @@ async function handleConnectionUpdate(update) {
 	if (connection === 'open') {
 		log('✅ Connection opened successfully — bot is online.')
 		log(`Logged in as: ${sock.user?.id ?? 'unknown'}`)
-		await sendSelfSuccessMessage()
+		// Small initial delay so a fresh pairing has time to finish
+		// syncing session/pre-key material before we send anything.
+		setTimeout(() => sendSelfSuccessMessage(), 2000)
 	}
 
 	if (connection === 'close') {
@@ -175,10 +177,22 @@ async function handleConnectionUpdate(update) {
 
 // Sends a confirmation message to the paired account's own chat
 // (i.e. "Message yourself" in WhatsApp) once the connection is live.
-async function sendSelfSuccessMessage() {
+//
+// Right after a fresh pairing, WhatsApp may not have finished syncing
+// session/pre-key material yet, so a message fired the instant the
+// connection opens can fail. We retry a few times with a short delay
+// to ride that out instead of silently giving up.
+async function sendSelfSuccessMessage(attempt = 1) {
+	const MAX_ATTEMPTS = 4
+	const DELAY_MS = 3000
+
+	const jid = sock.user?.id
+	if (!jid) {
+		log('sendSelfSuccessMessage: sock.user.id not available yet, skipping.')
+		return
+	}
+
 	try {
-		const jid = sock.user?.id
-		if (!jid) return
 		await sock.sendMessage(jid, {
 			text:
 				'✅ *Connected successfully!*\n\n' +
@@ -187,7 +201,12 @@ async function sendSelfSuccessMessage() {
 		})
 		log('Sent success confirmation DM to your own number.')
 	} catch (err) {
-		log(`Could not send success DM: ${err.message}`)
+		log(`Could not send success DM (attempt ${attempt}/${MAX_ATTEMPTS}): ${err.message}`)
+		if (attempt < MAX_ATTEMPTS) {
+			setTimeout(() => sendSelfSuccessMessage(attempt + 1), DELAY_MS)
+		} else {
+			log('Giving up on the success DM after repeated failures — bot is still online.')
+		}
 	}
 }
 
