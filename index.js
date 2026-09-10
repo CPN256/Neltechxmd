@@ -19,7 +19,7 @@ const OWNER = 'Oundo Nelson'
 const OWNER_PHONE = '0750713834'
 
 const AUTH_DIR = path.join(process.cwd(), 'auth_info')
-const BANNER_PATH = path.join(process.cwd(), 'assets', 'banner.png')
+const LOGO_PATH = path.join(process.cwd(), 'assets', 'logo.png')
 const STATUS_JID = 'status@broadcast'
 
 const logger = pino({ level: 'silent' })
@@ -310,9 +310,9 @@ async function sendConnectedMessage() {
       `📱 ${OWNER_PHONE}\n\n` +
       `Type *${PREFIX}menu* to see commands.`
 
-    if (fs.existsSync(BANNER_PATH)) {
+    if (fs.existsSync(LOGO_PATH)) {
       await sendMessage(jid, {
-        image: fs.readFileSync(BANNER_PATH),
+        image: fs.readFileSync(LOGO_PATH),
         caption: text
       })
     } else {
