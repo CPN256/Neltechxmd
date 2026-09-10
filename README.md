@@ -28,7 +28,8 @@ DON'T FORGET TO FORK 🍴 & STAR 🌟 OUR REPO🫠
 <a aria-label="Chat me" href="https://t.me/"CAT_PHOENIX" target="_blank">
     <img alt="telegram" src="https://img.shields.io/badge/Telegram Group-24A1DE?style=for-the-badge&logo=telegram&logoColor=white" />
   </a>
-</p>  
+</p> 
+      
 A minimal WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Baileys) that:
 
 - Logs in using an **8-digit pairing code** (no QR scanning) — you enter your phone
