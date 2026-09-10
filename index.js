@@ -16,7 +16,8 @@ import makeWASocket, {
 	fetchLatestBaileysVersion,
 	makeCacheableSignalKeyStore,
 	DisconnectReason,
-	Browsers
+	Browsers,
+	jidNormalizedUser
 } from 'baileys'
 import { Boom } from '@hapi/boom'
 import pino from 'pino'
@@ -186,11 +187,15 @@ async function sendSelfSuccessMessage(attempt = 1) {
 	const MAX_ATTEMPTS = 4
 	const DELAY_MS = 3000
 
-	const jid = sock.user?.id
-	if (!jid) {
+	const rawJid = sock.user?.id
+	if (!rawJid) {
 		log('sendSelfSuccessMessage: sock.user.id not available yet, skipping.')
 		return
 	}
+	// sock.user.id can include a ":device" suffix — normalize it the same
+	// way Baileys does internally, or the send silently won't land in the
+	// visible "Message Yourself" chat.
+	const jid = jidNormalizedUser(rawJid)
 
 	try {
 		await sock.sendMessage(jid, {
