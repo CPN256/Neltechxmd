@@ -13,7 +13,7 @@ DON'T FORGET TO FORK 🍴 & STAR 🌟 OUR REPO🫠
 
 <p align="center">
   <a href="https://chat.whatsapp.com/KMvJBu444hzEiAhzsSXPbJ">
-    <img alt=Support weight="10" src="https://github.io/logo.png"> 
+    <img alt=Support weight="10" src="https://github.com/CPN256/Neltechxmd/blob/main/logo.png"> 
     </p>
 <p align="center"> 
     </p>
